@@ -100,19 +100,26 @@
       event.preventDefault();
       if (!contactForm.reportValidity()) return;
 
-      if (API_BASE_URL.includes('YOUR-FLASK-BACKEND')) {
-        contactStatus.textContent = 'The contact service is not connected yet. Please use the email link on this page for now.';
-        return;
-      }
-
-      const submitButton = contactForm.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton.innerHTML;
       const data = new FormData(contactForm);
       const payload = {
         name: String(data.get('name') || '').trim(),
         email: String(data.get('email') || '').trim(),
         message: String(data.get('message') || '').trim()
       };
+
+      // Until the Flask API is deployed, open the visitor's email app with a pre-filled message.
+      // This is a working fallback, but the visitor must press Send in their email app.
+      if (API_BASE_URL.includes('YOUR-FLASK-BACKEND')) {
+        const subject = `Portfolio contact from ${payload.name}`;
+        const body = `Name: ${payload.name}\nEmail: ${payload.email}\n\nMessage:\n${payload.message}`;
+        const mailto = `mailto:krithekav2005@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        contactStatus.textContent = 'Opening your email app with the message filled in. Please press Send there to deliver it.';
+        window.location.href = mailto;
+        return;
+      }
+
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.innerHTML;
 
       submitButton.disabled = true;
       submitButton.textContent = 'Sending…';
