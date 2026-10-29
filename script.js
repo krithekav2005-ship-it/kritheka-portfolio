@@ -88,19 +88,52 @@
     $$('main section[id]').forEach(section => observer.observe(section));
   }
 
-  // The form uses mailto, so no backend or data storage is implied.
+  // Replace this placeholder with your deployed Flask service URL after deployment.
+  // Example: https://kritheka-portfolio-api.onrender.com (no trailing slash).
+  const API_BASE_URL = 'https://YOUR-FLASK-BACKEND.onrender.com';
+
+  // Send contact form data to Flask; Flask validates it and stores it in the database.
   const contactForm = $('#contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', event => {
+  const contactStatus = $('#contact-status');
+  if (contactForm && contactStatus) {
+    contactForm.addEventListener('submit', async event => {
       event.preventDefault();
       if (!contactForm.reportValidity()) return;
+
+      if (API_BASE_URL.includes('YOUR-FLASK-BACKEND')) {
+        contactStatus.textContent = 'The contact service is not connected yet. Please use the email link on this page for now.';
+        return;
+      }
+
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.innerHTML;
       const data = new FormData(contactForm);
-      const name = String(data.get('name') || '').trim();
-      const email = String(data.get('email') || '').trim();
-      const message = String(data.get('message') || '').trim();
-      const subject = `Portfolio enquiry from ${name}`;
-      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-      window.location.href = `mailto:krithekav2005@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const payload = {
+        name: String(data.get('name') || '').trim(),
+        email: String(data.get('email') || '').trim(),
+        message: String(data.get('message') || '').trim()
+      };
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending…';
+      contactStatus.textContent = 'Sending your message…';
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || 'Your message could not be sent. Please try again.');
+        contactStatus.textContent = result.message || 'Thanks! Your message was sent successfully.';
+        contactForm.reset();
+      } catch (error) {
+        contactStatus.textContent = error.message || 'Could not reach the contact service. Please try again later.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+      }
     });
   }
 })();

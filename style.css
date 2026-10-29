@@ -7,3 +7,109 @@
 @media(max-width:760px){.container{width:min(calc(100% - 36px),var(--max))}.nav-wrap{min-height:68px;gap:10px}.menu-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;order:3;margin-left:0}.menu-toggle span{height:2px;width:16px;background:currentColor;border-radius:3px}.theme-toggle{margin-left:auto}.site-nav{display:none;position:absolute;left:0;right:0;top:100%;padding:12px 18px 18px;background:var(--surface);border-bottom:1px solid var(--line);margin:0;box-shadow:var(--shadow)}.site-nav.is-open{display:grid;gap:0}.site-nav a{padding:13px 10px;border-bottom:1px solid var(--line)}.site-nav a:last-child{border:0}.hero{padding-top:70px}.hero-layout{grid-template-columns:1fr;gap:42px;padding-bottom:65px}.hero-copy{max-width:100%}.hero h1{font-size:clamp(58px,13vw,82px)}.hero-description{max-width:620px}.code-card{justify-self:start;max-width:490px;transform:none}.hero-bottom-line{gap:10px;font-size:8px}.section{padding:78px 0}.section-heading{display:block;margin-bottom:30px}.section-heading h2,.about-heading h2{font-size:clamp(32px,8vw,43px)}.section-intro{margin-top:15px;max-width:560px}.project-toolbar{align-items:flex-start}.project-grid{grid-template-columns:1fr}.project-card:last-child{grid-column:auto}.project-card:last-child .project-art{height:205px}.project-art{height:220px}.about-grid{grid-template-columns:1fr;gap:28px}.about-heading{min-height:190px}.about-mark{font-size:150px;bottom:-20px}.about-copy .lead{font-size:15px}.journey-item{grid-template-columns:115px 1fr;gap:18px}.contact-section{padding:78px 0}.contact-layout{grid-template-columns:1fr;gap:38px}.contact-copy h2{font-size:clamp(39px,9vw,54px)}.footer-inner{padding:20px 0;gap:12px}.footer-inner p{order:3;flex-basis:100%}}
 @media(max-width:480px){.container{width:calc(100% - 30px)}.brand{font-size:14px}.brand-mark{width:31px;height:31px}.hero{padding-top:56px}.eyebrow{font-size:8px}.hero-kicker{font-size:13px}.hero h1{font-size:59px}.hero-role{font-size:18px}.hero-description{font-size:12px}.hero-actions{gap:9px}.button{padding:0 13px;gap:10px;font-size:11px}.hero-meta{font-size:10px}.code-content{padding:22px 15px;font-size:10px}.code-card-top,.code-card-bottom{padding:0 12px}.hero-bottom-line{letter-spacing:.07em}.section{padding:68px 0}.project-toolbar{display:block}.text-link{display:inline-block;margin-top:15px}.filter-list{gap:5px}.filter-button{padding:8px;font-size:9px}.project-art{height:190px}.project-body{padding:18px}.skills-grid{grid-template-columns:1fr}.skill-card{padding:20px}.skill-card p{min-height:0}.journey-item{grid-template-columns:1fr;gap:12px;padding:20px 0}.journey-date span{display:inline;margin-left:8px}.contact-form{padding:20px}.footer-inner{gap:12px}.footer-inner p{font-size:9px}.copyright{margin-left:auto}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* Accessibility polish: brighter text, stronger contrast, and easier reading */
+:root{
+  --muted:#c0cbe0;
+  --subtle:#9aaac5;
+}
+:root[data-theme="light"]{
+  --muted:#3f4d63;
+  --subtle:#56647a;
+}
+body{font-size:16px;line-height:1.8}
+.site-nav a{font-size:13px}
+.hero-kicker{font-size:16px}
+.hero-description{font-size:15px;line-height:1.9}
+.hero-meta{font-size:12px}
+.section-intro{font-size:13px}
+.filter-button{font-size:11px}
+.project-body p{font-size:12px;line-height:1.85}
+.tag-list li,.skill-tags li{font-size:10px}
+.about-copy p{font-size:13px;line-height:1.9}
+.about-facts>div>span{font-size:11px}
+.about-facts b{font-size:12px}
+.about-facts small{font-size:11px}
+.skill-card p{font-size:11px;line-height:1.85}
+.journey-date{font-size:12px}
+.journey-date span{font-size:10px}
+.journey-detail h3{font-size:16px}
+.journey-detail p{font-size:12px;line-height:1.85}
+.journey-detail small{font-size:11px}
+.contact-copy>p:not(.section-label){font-size:13px;line-height:1.9}
+.contact-links a>span:nth-child(2){font-size:12px}
+.contact-links small{font-size:10px}
+.contact-form label{font-size:11px}
+.contact-form input,.contact-form textarea{font-size:13px;padding:12px 13px}
+.form-note{font-size:10px}
+.site-footer .footer-inner p{font-size:11px}
+.back-top{font-size:11px}
+.copyright{font-size:10px}
+.button{font-size:13px}
+.button-small{font-size:11px}
+.project-overline{font-size:10px}
+.link-note,.section-footnote{font-size:11px}
+@media(max-width:480px){
+  .hero-description{font-size:13px}
+  .about-copy p{font-size:13px}
+  .project-body p{font-size:12px}
+  .button{font-size:12px}
+}
+
+/* Readability update: larger supporting text and stronger contrast throughout */
+:root{--muted:#d0d9eb;--subtle:#b3c0d8}
+:root[data-theme="light"]{--muted:#37465e;--subtle:#4b5b73}
+body{font-size:17px;line-height:1.85}
+.eyebrow,.section-label,.project-overline,.form-heading>span{font-size:12px;line-height:1.6}
+.site-nav a{font-size:14px}
+.hero-kicker{font-size:17px}
+.hero-description{font-size:16px;line-height:1.9}
+.button{font-size:14px;min-height:48px}
+.hero-meta{font-size:13px}
+.code-card-top,.code-card-bottom{font-size:12px}
+.code-content{font-size:14px;line-height:2.1}
+.hero-bottom-line{font-size:12px}
+.section-intro{font-size:14px;line-height:1.9}
+.filter-button{font-size:12px;padding:10px 13px}
+.text-link{font-size:13px}
+.project-body p{font-size:14px;line-height:1.85}
+.tag-list li,.skill-tags li{font-size:12px}
+.link-note,.section-footnote{font-size:13px}
+.about-copy p{font-size:15px;line-height:1.9}
+.about-copy .lead{font-size:18px}
+.about-facts>div>span{font-size:12px}
+.about-facts b{font-size:14px}
+.about-facts small{font-size:13px}
+.skill-card h3{font-size:17px}
+.skill-card p{font-size:13px;line-height:1.85}
+.skill-tags li{padding:5px 8px}
+.journey-date{font-size:13px}
+.journey-date span{font-size:12px}
+.journey-detail h3{font-size:17px}
+.journey-detail p{font-size:14px;line-height:1.85}
+.journey-detail small{font-size:13px}
+.contact-copy>p:not(.section-label){font-size:15px;line-height:1.9}
+.contact-links a>span:nth-child(2){font-size:14px}
+.contact-links small{font-size:12px}
+.contact-form label{font-size:13px}
+.contact-form input,.contact-form textarea{font-size:15px;line-height:1.6;padding:13px 14px}
+.form-note{font-size:12px;line-height:1.8}
+.site-footer .footer-inner p,.back-top{font-size:13px}
+.copyright{font-size:12px}
+@media(max-width:480px){
+ body{font-size:16px}
+ .eyebrow,.section-label,.project-overline,.form-heading>span{font-size:11px}
+ .hero-kicker{font-size:15px}
+ .hero-description{font-size:15px}
+ .hero-meta{font-size:12px}
+ .code-content{font-size:11px}
+ .hero-bottom-line{font-size:10px}
+ .section-intro{font-size:14px}
+ .filter-button{font-size:11px}
+ .project-body p{font-size:14px}
+ .tag-list li,.skill-tags li{font-size:12px}
+ .about-copy p,.contact-copy>p:not(.section-label){font-size:14px}
+ .journey-detail p{font-size:14px}
+ .contact-form input,.contact-form textarea{font-size:16px}
+}
